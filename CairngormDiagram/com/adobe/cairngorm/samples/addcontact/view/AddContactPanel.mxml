@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel 
+   xmlns:mx="http://www.adobe.com/2006/mxml"
+   xmlns:view="com.adobe.cairngorm.samples.addcontact.view.*"
+   title="MyContacts" 
+   horizontalAlign="left" height="350"> 
+
+    <mx:Script>
+    <![CDATA[  
+ 		
+	 	import com.adobe.cairngorm.control.CairngormEventDispatcher;     
+		import com.adobe.cairngorm.samples.addcontact.control.AddContactEvent;   
+		import com.adobe.cairngorm.samples.addcontact.model.AddContact;
+		import com.adobe.cairngorm.samples.addcontact.vo.ContactVO;
+		import com.adobe.cairngorm.samples.addcontact.model.ModelLocator;
+		import mx.collections.ArrayCollection;
+
+       [Bindable]
+	   public var addcontact : AddContact;
+	   
+	   [Bindable]
+       public var contacts : ArrayCollection;  
+         
+	   public function addContact() : void
+	   {
+	      var contactVO : ContactVO = new ContactVO();
+	      contactVO.fullname = fullname.text;
+	      contactVO.emailaddress = emailaddress.text;
+			
+  			var event : AddContactEvent = new AddContactEvent( contactVO );
+  			CairngormEventDispatcher.getInstance().dispatchEvent( event );
+	   }
+    ]]>
+    </mx:Script>
+    <mx:HBox height="100%"> 
+    
+    <mx:VBox>
+    
+	    <mx:Form id="addcontactForm">
+	    
+		    <mx:HBox width="100%" horizontalAlign="left">
+			    <mx:Text text="Add a Contact:"/>
+		    </mx:HBox>
+		    
+	        <mx:FormItem label="Name: ">
+	            <mx:TextInput id="fullname"/>
+	        </mx:FormItem>
+	        
+	        <mx:FormItem label="Email: ">
+	            <mx:TextInput id="emailaddress" displayAsPassword="true"/>
+	        </mx:FormItem> 
+ 
+	        <mx:HBox width="100%" horizontalAlign="right">
+		        <mx:Button label="AddContact" enabled="{ !addcontact.isPending }" click="addContact()"/>   
+	    	</mx:HBox>
+	    	
+	    </mx:Form>
+	    
+	    <mx:Text 
+	    	 text="{ addcontact.statusMessage }" 
+	    	 textAlign="center"/>
+	    </mx:VBox>
+ 
+    <mx:VRule  height="100%" strokeColor="#DDDDDD"/>   
+ 
+    <mx:VBox paddingTop="15" paddingLeft="15" paddingRight="15" paddingBottom="15">
+     
+      <mx:Text text="List of Contacts"/>
+  
+      <mx:List wordWrap="true" dataProvider="{contacts}" width="200" height="220"></mx:List>
+
+    </mx:VBox>
+ 
+  </mx:HBox>   
+</mx:Panel>

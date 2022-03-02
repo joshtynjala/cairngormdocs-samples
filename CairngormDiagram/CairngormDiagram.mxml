@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application 
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:business="com.adobe.cairngorm.samples.addcontact.business.*" 
+	xmlns:control="com.adobe.cairngorm.samples.addcontact.control.*" 
+	xmlns:view="com.adobe.cairngorm.samples.addcontact.view.*"
+	pageTitle="Cairngorm Diagram accompanying example code" 
+	horizontalAlign="center" verticalAlign="middle" viewSourceURL="srcview/index.html">
+
+<!-- 
+
+ Cairngorm Diagram companion code 
+ Based on Login example by Alex Uhlmann - http://www.alex-uhlmann.de/flash/adobe/blog/cairngormlogin/CairngormLogin.html
+
+ *** Please submit changes back to the cairngorm-documentation group here
+ 	http://tech.groups.yahoo.com/group/cairngorm-documentation/ 
+ 	or contact me directly -  Evan Gifford, evan@flexheads.com ***
+
+ Diagram can be downloaded here: http://www.flexheads.com/cairngorm/
+ 
+-->
+
+	<mx:Script>
+	<![CDATA[
+		import mx.core.Container;
+		import com.adobe.cairngorm.samples.addcontact.model.ModelLocator;	
+		import com.adobe.cairngorm.samples.addcontact.vo.ContactVO;
+						
+		[Bindable]
+		public var model : ModelLocator = ModelLocator.getInstance();
+
+	]]>
+	</mx:Script>
+	
+<!-- ========================================================================== -->
+
+	<!-- the ServiceLocator where we specify the remote services -->
+	<business:Services id="addcontactServices"/>
+	
+	<!-- the FrontController, containing Commands specific to this appliation -->
+	<control:AddContactControl id="controller"/>
+	
+<!-- ========================================================================== -->
+
+    <view:AddContactPanel id="addcontactPanel" contacts="{model.contacts}" addcontact="{ model.addcontact }"/>
+
+</mx:Application>

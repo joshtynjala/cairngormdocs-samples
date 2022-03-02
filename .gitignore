@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+._*
+.actionScriptProperties
+.flexLibProperties
+.project
+asconfig.json
+.settings/
+bin-debug/
+bin-release/
+bin/
+target/
+.metadata/
+*.iml
+.idea/
+.vscode/
+*.code-workspace
